@@ -19,7 +19,6 @@ app.use(express.json());
 
 const uri = "mongodb+srv://Dhew:123@cluster0.kfnsc.mongodb.net/?retryWrites=true&w=majority";
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -30,9 +29,9 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    //Connect the client to the server	(optional starting in v4.7)
+
     await client.connect();
-    //Send a ping to confirm a successful connection
+
     await client.db("Users").command({ ping: 1 });
    console.log("Pinged your deployment. You successfully connected to MongoDB!");
     const userCollection = client.db("Users").collection("User");
