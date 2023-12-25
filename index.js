@@ -4,6 +4,8 @@ const app = express();
 const nodemailer = require('nodemailer');
 const port=process.env.PORT || 5000;
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+require('dotenv').config();
+
 
 app.get('/',(req,res)=>{
     res.send("Server Running");
@@ -17,7 +19,7 @@ app.use(express.json());
 
 
 
-const uri = "mongodb+srv://Dhew:123@cluster0.kfnsc.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.kfnsc.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, {
   serverApi: {
